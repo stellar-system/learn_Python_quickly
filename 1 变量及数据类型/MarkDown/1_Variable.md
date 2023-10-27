@@ -64,6 +64,7 @@ PI = 3.14
 >>>print(id(b))
 >>>print(a == b)
 >>>print(a is b)
+
 2623612757168
 2623612756944
 True
@@ -79,6 +80,7 @@ False
 >>>b = a
 >>>print(a == b)
 >>>print(a is b)
+
 True
 True
 ```
@@ -112,6 +114,7 @@ python包含6种标准的数字类型:
 ```python
 >>> a, b, c, d = 11, 3.3, True, 1+2j
 >>> print(type(a), type(b), type(c), type(d))
+
 <class 'int'> <class 'float'> <class 'bool'> <class 'complex'>
 ```
 
@@ -119,6 +122,7 @@ python包含6种标准的数字类型:
 ```python
 >>> a = 111
 >>> isinstance(a, int)
+
 True
 ```
 

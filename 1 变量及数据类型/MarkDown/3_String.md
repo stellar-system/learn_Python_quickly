@@ -45,12 +45,12 @@ print(name)
 # 所有字母小写
 name = name.lower()
 print(name)
+
+Ada Lovelace
+ADA LOVELACE
+ada lovelace
 ```
 
-    Ada Lovelace
-    ADA LOVELACE
-    ada lovelace
-    
 
 在print语句中，方法title()出现在变量name后面，**方法**是Python可对数据执行的操作。在name.title()中，name后面的句点(.)让Python对变量name执行方法title()指定的操作。每个方法后面都跟着一对括号，这是因为方法通常需要额外的信息来完成其工作，这种信息实在括号内提供的。函数title()不需要额外的信息，因此括号内是空的。
 
@@ -63,6 +63,7 @@ print(name)
 >>>last_name = 'lovelace'
 >>>full_name = first_name + ' ' +  last_name
 >>>print(full_name.title())
+
 Ada Lovelace
 ```
 
@@ -77,6 +78,7 @@ Ada Lovelace
 >>>print('python')
 >>>print('\tpython')
 >>>print('languages:\npython\nC\njavascript')
+
 python
     python
 languages:
@@ -91,6 +93,7 @@ javascript
 >>>print(favorite_language.strip())
 >>>print(favorite_language.rstrip())
 >>>print(favorite_language.lstrip())
+
  python 
 python
  python
@@ -106,6 +109,7 @@ python
 >>>print(s[0])
 >>>print(s[::-1])
 >>>print(s[3:])
+
 h
 dlrow olleh
 lo world
@@ -116,6 +120,7 @@ lo world
 
 ```python
 >>>s.replace('l', 'PP')
+
 'hePPPPo worPPd'
 ```
 
@@ -128,6 +133,7 @@ lo world
 >>>print(s.find('l', 4))  # 设定下标4开始寻找
 # rfind(a,b) 从右侧开始寻找，返回最右侧出现的子串的索引（正索引），找不到子串返回-1
 >>>print(s.rfind('l')) 
+
 2
 9
 9
@@ -135,6 +141,7 @@ lo world
 
 ```python
 >>>print(s.index('l')) # 返回第一次出现的子串的下标，找不到会抛出异常
+
 2
 ```
 
@@ -145,12 +152,19 @@ lo world
 # 以下方法中连接各元素的符号如逗号，冒号分号等都可以随意改动
 
 >>>print('%s %s' % ('win', '64'))
+
 win 64
+
 >>>print('{}, {}'.format(21, 'win')) # 推荐使用format格式化字符串
+
 21, win
+
 >>>print('{0}, {1}, {0}'.format('Windrivder', 21)) # 花括号内的数字是format内的元素的索引
+
 Windrivder, 21, Windrivder
+
 >>>print('{name}: {age}'.format(age=21, name='Windrivder'))
+
 Windrivder: 21
 ```
 
@@ -163,6 +177,7 @@ Windrivder: 21
 >>>l = ['2017', '03', '29', '22:00']
 >>>string = '-'.join(l)
 >>>print(string)
+
 2017-03-29-22:00
 ```
 
@@ -170,6 +185,7 @@ Windrivder: 21
 ```python
 # 使用split()按元素分隔字符串,分隔后以列表形式返回
 >>>print(string.split('-'))
+
 ['2017', '03', '29', '22:00']
 ```
 
@@ -188,6 +204,7 @@ Windrivder: 21
 # decode 将字节转换为字符
 >>>print (str.encode().decode('utf8'))   # 输出 'hello world'
 >>>print (str.encode('gbk').decode('gbk'))             # 输出 'hello world'
+
 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe4\xb8\x96\xe7\x95\x8c\xef\xbc\x8chello world!'
 b'\xc4\xe3\xba\xc3\xca\xc0\xbd\xe7\xa3\xachello world!'
 你好世界，hello world!
