@@ -1,0 +1,2 @@
+# 忽略notebook checkpoint文件
+.ipynb_checkpoints
