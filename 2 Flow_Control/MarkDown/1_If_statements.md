@@ -13,15 +13,15 @@ if语句用于检查程序的当前状态
 # 3. 比较数字
 # 4. 检查多个条件：
 #     4.1 使用and检查多个条件
-age = 18 
-age >= 20 and age <= 24
+>>>age = 18 
+>>>age >= 20 and age <= 24
 #     4.2 使用or检查多个条件
-age <= 20 or age >= 24
+>>>age <= 20 or age >= 24
 # 5. 检查特定值
 #     5.1 检查特定值是否包含在列表中可使用关键字in：if a in list(a):
-3 in [1, 2, 3]
+>>>3 in [1, 2, 3]
 #     5.2 检查特定值是否不包含在列表中可使用关键字not in： if a not in list(a)
-3 not in [1, 2, 3]
+>>>3 not in [1, 2, 3]
 # 6. 布尔表达式：条件测试的别名，与条件表达式一样，布尔表达式的结果要么为True，要么为False
 ```
 
@@ -54,15 +54,15 @@ age <= 20 or age >= 24
 
 ```python
 # 需要检查的超过两个情形时，python只执行if-elif-else结构中的一个代码块
-age = 12
-if age < 4:
-    price = 0
-elif age < 18:
-    price = 5
-else:
-    price = 10
+>>>age = 12
+>>>if age < 4:
+        price = 0
+>>>elif age < 18:
+        price = 5
+>>>else:
+        price = 10
     
-print("Your admission cost is $" + str(price) + '.')
+>>>print("Your admission cost is $" + str(price) + '.')
 
 Your admission cost is $5.
 ```

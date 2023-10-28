@@ -39,6 +39,9 @@ while current_number <= 5:
 ```
 
 
+    
+
+
 ```python
 # 让用户选择何时推出循环体
 prompt = "tell me something, and I will repeat it back to you； "
@@ -48,9 +51,11 @@ while message != 'quit':
     message = input(prompt)
     print(message)
 
+
 quit
 ```
 
+    
 
 ## 2.3 使用while循环处理列表和字典
 
@@ -86,6 +91,8 @@ Alice
 ```
 
 
+    
+
 - 2 删除包含特定值的所有列表元素
 
 
@@ -102,6 +109,7 @@ print(pets)
 ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
 ['dog', 'dog', 'goldfish', 'rabbit']
 ```
+
 
     
 
@@ -133,18 +141,9 @@ print('\n---polling results---')
 for name,response in responses.items():
     print(name + " would like to climb " + response + '.')
 
-
-What is your name? Lewis Hr
-Which moutain would you like to climb someday? 喜马拉雅
-Would you like to let another person respond?(yes/no) yes
-
-What is your name? Fet tang
-Which moutain would you like to climb someday? 富士
-Would you like to let another person respond?(yes/no) no
-
 ---polling results---
-Lewis Hr would like to climb 喜马拉雅.
-Fet tang would like to climb 富士.
+    would like to climb .
+lh would like to climb abc.
 ```
 
     
@@ -153,7 +152,8 @@ Fet tang would like to climb 富士.
 
 ------------------------------
 
-- **标志**：在要求很多条件都要满足才继续运行的程序中，可定义一个变量，用于判断整个程序是否处于活动状态，这个变量被称为标志，标志很有用，在其中的任何一个事件导致活动的标志位变成False时，主游戏循环将推出，此时可显示一条游戏结束消息，并让用户选择是否要重新玩。
+###  3.1 **标志**：
+    在要求很多条件都要满足才继续运行的程序中，可定义一个变量，用于判断整个程序是否处于活动状态，这个变量被称为标志，标志很有用，在其中的任何一个事件导致活动的标志位变成False时，主游戏循环将推出，此时可显示一条游戏结束消息，并让用户选择是否要重新玩。
 
 
 ```python
@@ -167,7 +167,8 @@ while active:
         print(message)
 ```
 
-- break: 要立即退出循环体而不执行剩下的代码，也不管条件测试的结果如何，可使用break语句
+### 3.2 **break**: 
+    要立即退出**最近的**一层循环体而不执行剩下的代码，也不管条件测试的结果如何，可使用break语句
 
 
 ```python
@@ -181,7 +182,8 @@ while active:
         print(message)
 ```
 
-- continue： 若要返回循环开头，并根据条件测试的结果决定是否继续执行循环，可使用continue语句，让python忽略continue语句后的代码
+### 3.3 **continue**： 
+    若要返回循环开头，并根据条件测试的结果决定是否继续执行循环，可使用continue语句，让python忽略continue语句后的代码
 
 
 ```python
@@ -194,6 +196,7 @@ while current_number <= 10:
     else:
         continue
 
+
 2
 4
 6
@@ -201,7 +204,54 @@ while current_number <= 10:
 10
 ```
 
+    
 
-- 无限循环：关于无限循环，有时我们需要代码一直运行下去，有时我们又希望代码能在限定的条件下停止，因此在设计代码时应对每个循环体进行测试，确保它保持我们需要的运行状态
+### 3.4 **无限循环**：
+    关于无限循环，有时我们需要代码一直运行下去，有时我们又希望代码能在限定的条件下停止，因此在设计代码时应对每个循环体进行测试，确保它保持我们需要的运行状态
 
-- pass语句：pass语句是一个空语句，python在遇到pass语句时会什么都不做，我们常常用来在编写或测试代码时将循环体内写为pass以验证代码的条件测试逻辑
+### 3.5 **pass语句**：
+    pass语句是一个空语句，python在遇到pass语句时会什么都不做，我们常常用来在编写或测试代码时将循环体内写为pass以验证代码的条件测试逻辑
+
+
+```python
+while True:
+    pass   # 程序运行直至键盘打断(ctrl + c)
+
+class Emptyclass():
+    pass
+
+def initlog():
+    pass
+```
+
+### 3.6 **循环体中的else子句**：
+
+    ❗没错，for、while循环节结构都可以包含else子句。
+
+    在for循环中，else子句会在循环**成功结束最后一次迭代之后**执行
+
+    在while循环中，else子句会在循环条件变为假值后执行
+
+
+```python
+# 找素数
+for n in range(2,10):
+    for x in range(2,n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', n // x)
+            break
+    else:
+        # 循环在没有找到因数的情况下结束
+        print(n, 'is a prime number')
+
+2 is a prime number
+3 is a prime number
+4 equals 2 * 2
+5 is a prime number
+6 equals 2 * 3
+7 is a prime number
+8 equals 2 * 4
+9 equals 3 * 3
+```
+
+else子句用于此循环时比起if语句的else子句，更像try语句的。try语句的子句else在未发生异常时执行，循环的else子句则在未发生break时执行。
