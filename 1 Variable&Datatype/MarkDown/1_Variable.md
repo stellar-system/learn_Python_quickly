@@ -132,3 +132,4 @@ isinstance 和 type 的区别在于：
     isinstance()会认为子类是一种父类类型。
 
 
+[下一篇(2_Number)](./2_Number.md)

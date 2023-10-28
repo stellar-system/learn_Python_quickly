@@ -156,3 +156,5 @@ print(inverted_dict['yellow'])
 
 color
 ```
+
+[上一篇(5_Tuple&Set)](./5_Tuple&Set.md)

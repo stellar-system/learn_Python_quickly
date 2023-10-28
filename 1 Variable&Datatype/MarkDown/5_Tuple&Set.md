@@ -102,5 +102,5 @@ print(a_set)
 {1, 2, 3}
 ```
 
-
+[上一篇(4_List)](./4_List.md) \| [下一篇(6_Dict)](./6_Dict.md)
     

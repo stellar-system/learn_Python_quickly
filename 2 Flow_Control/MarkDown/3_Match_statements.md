@@ -171,3 +171,5 @@ Point(y=var, x=1)
         case Color.BLUE:
             print("I'm feeling the blues :(")
 ```
+
+[上一篇(2_Loop_structure)](./2_Loop_structure.md)

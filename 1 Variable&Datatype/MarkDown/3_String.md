@@ -210,3 +210,5 @@ b'\xc4\xe3\xba\xc3\xca\xc0\xbd\xe7\xa3\xachello world!'
 你好世界，hello world!
 你好世界，hello world!
 ```
+
+[上一篇(2_Number)](./2_Number.md) \| [下一篇(4_String)](./4_List.md)

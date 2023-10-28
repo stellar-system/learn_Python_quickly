@@ -255,3 +255,6 @@ for n in range(2,10):
 ```
 
 else子句用于此循环时比起if语句的else子句，更像try语句的。try语句的子句else在未发生异常时执行，循环的else子句则在未发生break时执行。
+
+
+[上一篇(1_If_statements)](./1_If_statements.md) \| [下一篇(3_Match_statements)](./3_Match_statements.md)

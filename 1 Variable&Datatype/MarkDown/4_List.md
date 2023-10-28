@@ -296,3 +296,5 @@ carolina
     old_players = players[:]
 
     倘若我们只是简单的将players赋值给old_players，如 old_players = players 则行不通，在这种方法下，old_players与players指向的实际上是同一个列表
+
+[上一篇(3_String)](./3_String.md) \| [下一篇(5_Tuple&Set)](./5_Tuple&Set.md)
