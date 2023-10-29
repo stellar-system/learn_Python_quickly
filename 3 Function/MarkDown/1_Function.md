@@ -233,8 +233,6 @@ list(range(*args))            # call with arguments unpacked from a list
 ```
 
 
-
-
 二、任意实参字典
 
 
@@ -412,7 +410,7 @@ This function do nothing
 
 - 2.使用```pydoc```工具库：pydoc是Python的一个标准库，可以用于生成文档。可以在命令行中使用pydoc命令来查看函数的文档字符串。如：
     
-        ```pydoc module_name.function_name```
+        pydoc module_name.function_name
 
 - 3.使用Sphinx工具库：Sphinx是一个功能强大的文档生成工具，可以用于生成丰富的文档，通过在代码中使用特定的注释格式，结合Sphinx命令行工具，可以生成包括函数文档字符串在内的详细文档。具体使用方法可以参考Sphinx官方文档。
 
