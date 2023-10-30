@@ -1,0 +1,126 @@
+# 包
+
+-----------------------
+
+```包```是通过使用“带点号模块名”来构造Python模块命名空间的一种方式。 例如，模块名A.B表示名为A的包中名为B的子模块。就像使用模块可以让不同模块的作者不必担心彼此的全局变量名一样，使用带点号模块名也可以让```NumPy```或```Pillow```等多模块包的作者也不必担心彼此的模块名冲突。
+
+假设要为统一处理声音文件与声音数据设计一个模块集（“包”）。声音文件的格式很多（通常以扩展名来识别，例如：.wav，.aiff，.au），因此，为了不同文件格式之间的转换，需要创建和维护一个不断增长的模块集合。为了实现对声音数据的不同处理（例如，混声、添加回声、均衡器功能、创造人工立体声效果），还要编写无穷无尽的模块流。下面这个分级文件树展示了这个包的架构：
+
+```
+sound/                          Top-level package
+      __init__.py               Initialize the sound package
+      formats/                  Subpackage for file format conversions
+              __init__.py
+              wavread.py
+              wavwrite.py
+              aiffread.py
+              aiffwrite.py
+              auread.py
+              auwrite.py
+              ...
+      effects/                  Subpackage for sound effects
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              ...
+      filters/                  Subpackage for filters
+              __init__.py
+              equalizer.py
+              vocoder.py
+              karaoke.py
+              ...
+```
+
+导入包时，Python搜索```sys.path```里的目录，查找包的子目录。
+
+必须要有```__init__.py```文件才能让Python将包含该文件的目录当作包来处理。 这可以防止具有通用名称的目录如 string 在无意中屏蔽后续出现在模块搜索路径中的有效模块。 在最简单的情况下，```__init__.py```可以只是一个空文件，但它也可以执行包的初始化代码或设置 ```__all__```变量，这将在后面详细描述。
+
+还可以从包中单独导入模块：
+
+```python
+>>>import sound.effects.echo
+```
+
+这将加载子模块```sound.effects.echo```。它必须通过其全名来引用。
+
+另一种导入子模块的方法是：
+
+```python
+>>>from sound.effects import echo
+```
+
+这也会加载子模块 echo，并使其不必加包前缀。
+
+import语句的另一种变体是直接导入所需的函数或者变量：
+
+```python
+>>>from sound.effects.echo import echofilter
+```
+
+同样，这将加载子模块 echo，但这使其函数 echofilter() 直接可用
+
+注意，使用```from package import item```时，```item```可以是包的子模块（或子包），也可以是包中定义的函数、类或变量等其他名称。import语句首先测试包中是否定义了item；如果未在包中定义，则假定item是模块，并尝试加载。如果找不到item，则触发```ImportError```异常。
+
+相反，使用```import item.subitem.subsubitem```句法时，除最后一项外，每个 item 都必须是包；最后一项可以是模块或包，但不能是上一项中定义的类、函数或变量。
+
+**简言之，直接跟在```import```关键字后面的是什么，在调用时就可以直接用什么**
+
+## 1 从包中导入*
+
+使用```from sound.effects import *```时会发生什么？你可能希望它会查找并导入包的所有子模块，但事实并非如此。因为这将花费很长的时间，并且可能会产生你不想要的副作用，如果这种副作用被你设计为只有在导入某个特定的子模块时才应该发生。
+
+唯一的解决办法是提供包的显式索引。import语句使用如下惯例：如果包的 ```__init__.py```代码定义了列表```__all__```，运行```from package import *```时，它就是被导入的模块名列表。发布包的新版本时，包的作者应更新此列表。如果包的作者认为没有必要在包中执行导入```*```操作，也可以不提供此列表。例如，```sound/effects/__init__.py```文件可以包含以下代码：
+
+```python
+__all__ = ["echo", "surround", "reverse"]
+```
+
+这意味着```from sound.effects import *```将导入```sound.effects```包的三个命名子模块。
+
+请注意子模块可能会受到本地定义名称的影响。例如，如果你在```sound/effects/__init__.py```文件中添加了一个```reverse```函数，```from sound.effects import *```将只导入```echo```和```surround```这两个子模块，但不会导入```reverse```子模块，因为它被本地定义的```reverse```函数所遮挡:
+
+```python
+__all__ = [
+    "echo",      # refers to the 'echo.py' file
+    "surround",  # refers to the 'surround.py' file
+    "reverse",   # !!! refers to the 'reverse' function now !!!
+]
+
+def reverse(msg: str):  # <-- this name shadows the 'reverse.py' submodule
+    return msg[::-1]    #     in the case of a 'from sound.effects import *'
+```
+
+如果没有定义```__all__```，```from sound.effects import *```语句不会把包```sound.effects```中的所有子模块都导入到当前命名空间；它只是确保包```sound.effects```已被导入（可能还会运行```__init__.py```中的任何初始化代码），然后再导入包中定义的任何名称。 这包括由 ```__init__.py```定义的任何名称（以及显式加载的子模块）。 它还包括先前import语句显式加载的包里的任何子模块。 请看以下代码:
+
+```python
+import sound.effects.echo
+import sound.effects.surround
+from sound.effects import *
+```
+
+在本例中，echo和surround模块被导入到当前命名空间，因为在执行 from...import 语句时它们已在```sound.effects```包中定义了。（当定义了```__all__```时也是如此）。
+
+虽然，可以把模块设计为用```import *```时只导出遵循指定模式的名称，但仍不提倡在生产代码中使用这种做法。
+
+❗ 记住，使用```from package import specific_submodule```没有任何问题！ 实际上，除了导入模块使用不同包的同名子模块之外，这种方式是推荐用法。
+
+## 2 相对导入
+
+当包由多个子包构成（如示例中的sound包）时，可以使用绝对导入来引用同级包的子模块。例如，如果```sound.filters.vocoder```模块需要使用```sound.effects```包中的```echo```模块，它可以使用```from sound.effects import echo```。
+
+你还可以编写相对导入代码，即使用```from module import name```形式的import语句。这些导入使用```前导点号```来表示相对导入所涉及的当前包和上级包，例如对于sorround模块，可以使用：
+
+```python
+from . import echo
+from .. import formats
+from ..filters import euqalizer
+```
+
+😊注意。相对导入基于当前模块名。因为主模块名永远是```"__main__"```,所以如果计划将一个模块用作Python应用程序的主模块，那么该模块内的导入语句必须始终使用绝对导入。
+
+## 3 多目录中的包
+
+包还支持一个特殊属性```__path__```，在包的```__init__.py```中的代码被执行前，该属性被初始化为一个只包含一项的列表，该项是一个字符串，是```__init__.py```所在目录的名称，可以修改此变量，这样做会改变在此包中搜索模块和子包的方式。
+
+[上一篇（1_module)](./1_module.md)
