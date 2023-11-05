@@ -270,7 +270,7 @@ class ClassName():                 class语句 + 类名，创建类对象
     *class variable                类变量（建议不采用）
     def __init__(self):            初始化函数，实例化类时自动执行
         self.x = x
-        ...                        初始化类属性
+        ...                        初始化类属性（instance variable）
         self.n = n
 
     def fun1(self, attribute):     定义类的函数对象
