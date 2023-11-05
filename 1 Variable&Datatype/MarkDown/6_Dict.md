@@ -66,7 +66,7 @@ print(alien_0)
 
 
 ```python
-# 遍历所有键值对,注意要使用方法itenms()，他返回一个键-值对列表
+# 遍历所有键值对，注意要使用方法items()，他返回一个键-值对列表
 for key, value in alien_0.items():
     print("\nkey:" + key)
     print("value:" + str(value))
@@ -145,7 +145,6 @@ for key, val in alien_0.items():
 color
 ```
 
-    
 
 2.使用**字典推导式**来创建一个新字典，将原字典的键值对颠倒，然后通过查找新字典的键值对来获取原字典的值：
 
