@@ -280,3 +280,5 @@ obj = ClassName()                  实例对象
 obj.x                              实例的属性
 f = x.fun1()                       方法对象
 ```
+
+[下一篇(2_inheritance)](./2_inheritance.md)
