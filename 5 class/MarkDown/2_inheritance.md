@@ -237,4 +237,4 @@ This method is from Base2.
 
 5. 导入模块中的所有类：from module_name import * (不推荐使用，1.没有明确指明使用了哪些类，2.可能引发名称方面的错误，因为这种导入方法在调用时无需使用句点表示法)
 
-[上一篇(1_class)](./1_class.md)
+[上一篇(1_class)](./1_class.md) | [下一篇(3_iterator)](./3_iterators.md)
